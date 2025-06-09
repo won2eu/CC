@@ -1,39 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:orientation="vertical"
+        android:padding="24dp">
 
+        <!-- 상단 타이틀 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:paddingBottom="8dp" />
+
+        <!-- 이름 -->
         <EditText
             android:id="@+id/et_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="이름" />
+            android:layout_height="56dp"
+            android:hint="이름"
+            android:background="@drawable/rounded_bg"
+            android:padding="16dp"
+            android:textColor="#111418"
+            android:textColorHint="#60748a" />
 
+        <!-- 학번 -->
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_student_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="이메일"
-            android:inputType="textEmailAddress" />
+            android:layout_height="56dp"
+            android:hint="학번"
+            android:inputType="number"
+            android:background="@drawable/rounded_bg"
+            android:padding="16dp"
+            android:textColorHint="#60748a"
+            android:textColor="#111418"
+            android:layout_marginTop="12dp" />
 
+        <!-- 비밀번호 -->
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:hint="비밀번호"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_bg"
+            android:padding="16dp"
+            android:textColorHint="#60748a"
+            android:textColor="#111418"
+            android:layout_marginTop="12dp" />
 
+        <!-- 성별 선택 -->
+        <Spinner
+            android:id="@+id/spinner_gender"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:entries="@array/gender_array"
+            android:background="@drawable/rounded_bg"
+            android:padding="12dp"
+            android:textColor="#111418"
+            android:layout_marginTop="12dp" />
+
+        <!-- 회원가입 버튼 -->
         <Button
             android:id="@+id/btn_signup_submit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="회원가입" />
+            android:layout_height="48dp"
+            android:text="회원가입"
+            android:textStyle="bold"
+            android:backgroundTint="#0c77f2"
+            android:textColor="#111418"
+            android:layout_marginTop="16dp"
+            />
     </LinearLayout>
 </ScrollView>
