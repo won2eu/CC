@@ -41,5 +41,12 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true" />
 
+        <activity
+            android:name=".VerificationActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+
+<!--        여기에 액티비티 추가할때마다 적어주세요!-->
+
     </application>
 </manifest>
