@@ -20,12 +20,13 @@
             android:paddingBottom="8dp" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_student_id"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:hint="이메일 또는 전화번호"
+            android:hint="학번"
             android:background="@drawable/rounded_bg"
             android:padding="16dp"
+            android:textColor="#111418"
             android:textColorHint="#60748a" />
 
         <EditText
@@ -37,6 +38,7 @@
             android:inputType="textPassword"
             android:padding="16dp"
             android:textColorHint="#60748a"
+            android:textColor="#111418"
             android:layout_marginTop="12dp" />
 
         <Button
