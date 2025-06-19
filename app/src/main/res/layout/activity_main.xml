@@ -11,8 +11,6 @@
         android:layout_height="40dp"
         android:layout_margin="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_profile_sample"
-        android:background="@drawable/rounded_circle"
         android:contentDescription="profile" />
 
     <ImageButton
@@ -22,8 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        android:background="@null"
-        android:src="@drawable/ic_settings" />
+        android:background="@null" />
 
     <!-- 텍스트 중앙 -->
     <LinearLayout
@@ -87,8 +84,7 @@
 
             <ImageView
                 android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_home_filled" />
+                android:layout_height="24dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -100,8 +96,7 @@
 
             <ImageView
                 android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_users_outline" />
+                android:layout_height="24dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -113,8 +108,7 @@
 
             <ImageView
                 android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_heart_outline" />
+                android:layout_height="24dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -126,8 +120,7 @@
 
             <ImageView
                 android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chat_outline" />
+                android:layout_height="24dp"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
