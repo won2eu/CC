@@ -62,12 +62,30 @@
             android:id="@+id/spinner_gender"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:entries="@array/gender_array"
             android:background="@drawable/rounded_bg"
             android:padding="12dp"
             android:textColor="#111418"
             android:layout_marginTop="12dp" />
 
+        <!-- 전공 선택 -->
+        <Spinner
+            android:id="@+id/spinner_major"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/rounded_bg"
+            android:padding="12dp"
+            android:textColor="#111418"
+            android:layout_marginTop="12dp" />
+
+        <!-- MBTI 선택 -->
+        <Spinner
+            android:id="@+id/spinner_mbti"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/rounded_bg"
+            android:padding="12dp"
+            android:textColor="#111418"
+            android:layout_marginTop="12dp" />
         <!-- 회원가입 버튼 -->
         <Button
             android:id="@+id/btn_signup_submit"
@@ -79,5 +97,7 @@
             android:textColor="#111418"
             android:layout_marginTop="16dp"
             />
+
+
     </LinearLayout>
 </ScrollView>
