@@ -1,11 +1,16 @@
 package com.example.ccgi
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ccgi.ModelInterpreter
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.DocumentSnapshot
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 
 class MatchResultActivity : AppCompatActivity() {
 
@@ -18,6 +23,9 @@ class MatchResultActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
     private lateinit var modelInterpreter: ModelInterpreter
+
+    // 🔥 전역 matchedUser 변수 선언 (chatButton에서 사용 가능하도록)
+    private lateinit var matchedUser: DocumentSnapshot
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +44,48 @@ class MatchResultActivity : AppCompatActivity() {
         performMatching()
 
         chatButton.setOnClickListener {
-            Toast.makeText(this, "채팅 기능은 추후 추가됩니다!", Toast.LENGTH_SHORT).show()
+            lifecycleScope.launch {
+                val currentUserId = getCurrentUserId()
+                val matchedUserId = matchedUser.getString("studentId") ?: return@launch
+                val chatId = if (currentUserId < matchedUserId)
+                    "${currentUserId}_$matchedUserId"
+                else
+                    "${matchedUserId}_$currentUserId"
+
+                val chatRef = db.collection("chat_requests").document(chatId)
+
+                try {
+                    val snapshot = chatRef.get().await()
+
+                    if (snapshot.exists()) {
+                        chatRef.update("accepted", FieldValue.arrayUnion(currentUserId)).await()
+                    } else {
+                        chatRef.set(
+                            mapOf(
+                                "user1" to currentUserId,
+                                "user2" to matchedUserId,
+                                "accepted" to listOf(currentUserId)
+                            )
+                        ).await()
+                    }
+
+                    while (true) {
+                        val updated = chatRef.get().await()
+                        val accepted = updated.get("accepted") as? List<*> ?: emptyList<Any>()
+                        if (accepted.contains(currentUserId) && accepted.contains(matchedUserId)) {
+                            val intent = Intent(this@MatchResultActivity, ChatActivity::class.java)
+                            intent.putExtra("chatId", chatId)
+                            startActivity(intent)
+                            break
+                        } else {
+                            Toast.makeText(this@MatchResultActivity, "상대방 수락을 기다리는 중입니다...", Toast.LENGTH_SHORT).show()
+                            delay(3000)
+                        }
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this@MatchResultActivity, "채팅 요청 처리 중 오류 발생", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -70,6 +119,7 @@ class MatchResultActivity : AppCompatActivity() {
                         }
 
                         val match = candidates.random()
+                        matchedUser = match // 🔥 전역 변수에 저장
                         displayMatchInfo(match)
 
                         val matchMbti = match.getString("MBTI") ?: return@addOnSuccessListener
@@ -111,7 +161,7 @@ class MatchResultActivity : AppCompatActivity() {
             }
     }
 
-    private fun displayMatchInfo(match: com.google.firebase.firestore.DocumentSnapshot) {
+    private fun displayMatchInfo(match: DocumentSnapshot) {
         nameView.text = "이름: ${match.getString("name") ?: "없음"}"
         mbtiView.text = "MBTI: ${match.getString("MBTI") ?: "없음"}"
         majorView.text = "전공: ${match.getString("major") ?: "없음"}"
