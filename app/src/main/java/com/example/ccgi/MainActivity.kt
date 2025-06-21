@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                                     val studentId = prefs.getString("studentId", null)
 
                                     if (studentId != null) {
-                                        // 🔽 결과를 users/{studentId} 문서에 "face" 필드로 저장
                                         val db = FirebaseFirestore.getInstance()
                                         db.collection("users")
                                             .document(studentId)
@@ -88,6 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         GptKeyProvider.init(applicationContext)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -105,6 +105,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val emailButton = findViewById<Button>(R.id.btn_send_email)
+        emailButton.setOnClickListener {
+            sendFeedbackEmail()
+        }
     }
 
     private fun openImagePicker() {
@@ -114,4 +118,20 @@ class MainActivity : AppCompatActivity() {
         }
         pickImageLauncher.launch(intent)
     }
+
+    private fun sendFeedbackEmail() {
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:kimmc3423@naver.com")
+        }
+
+        try {
+            startActivity(Intent.createChooser(intent, "이메일 앱을 선택하세요"))
+            Toast.makeText(this, "이메일 앱을 열었습니다. 피드백을 작성해주세요.", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(this, "이메일 앱이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
 }

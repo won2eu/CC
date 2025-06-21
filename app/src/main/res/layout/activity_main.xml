@@ -4,16 +4,31 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <!-- 이메일 보내기 버튼 (상단 중앙) -->
+    <Button
+        android:id="@+id/btn_send_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 보내기"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF6F00"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
     <!-- 상단 프로필 + 설정 -->
+
+    <!-- 이미지 업로드 안내 텍스트 -->
     <ImageView
         android:id="@+id/img_profile"
-        android:layout_width="397dp"
-        android:layout_height="243dp"
+        android:layout_width="340dp"
+        android:layout_height="163dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="43dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="101dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
@@ -23,7 +38,6 @@
         android:focusable="true"
         android:scaleType="centerCrop" />
 
-    <!-- 이미지 업로드 안내 텍스트 -->
     <TextView
         android:id="@+id/tv_upload_hint"
         android:layout_width="wrap_content"
