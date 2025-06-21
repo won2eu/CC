@@ -46,7 +46,11 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true" />
 
-        <activity android:name=".MatchingActivity" />
+        <activity
+            android:name=".MatchResultActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true"/>
+
 
 
         <!--        여기에 액티비티 추가할때마다 적어주세요!-->

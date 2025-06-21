@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                         if (storedPw == password) {
                             // 로그인 성공 → SharedPreferences 저장
                             val prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-                            prefs.edit().putBoolean("isLoggedIn", true).apply()
+                            prefs.edit().putBoolean("isLoggedIn", true).putString("studentId", studentId).apply()
 
                             Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this, MainActivity::class.java))
