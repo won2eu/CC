@@ -1,6 +1,7 @@
 package com.example.ccgi
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -29,7 +30,7 @@ class VerificationActivity : AppCompatActivity(), OnMapReadyCallback {
     private val MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey"
 
     private val PNU_BOUNDS = LatLngBounds(
-        LatLng(35.2300, 129.0825),
+        LatLng(35.2290, 129.0810),
         LatLng(35.2430, 129.0965)
     )
 
@@ -69,35 +70,59 @@ class VerificationActivity : AppCompatActivity(), OnMapReadyCallback {
                 ),
                 1001
             )
-
             return
         }
 
         googleMap.isMyLocationEnabled = true
 
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-            location?.let {
-                val current = LatLng(it.latitude, it.longitude)
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 16f))
-            }
+        val locationRequest = com.google.android.gms.location.LocationRequest.create().apply {
+            priority = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
+            interval = 0
+            numUpdates = 1 // 한 번만 받아오도록 설정
         }
+
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            object : com.google.android.gms.location.LocationCallback() {
+                override fun onLocationResult(result: com.google.android.gms.location.LocationResult) {
+                    val location = result.lastLocation
+                    if (location != null) {
+                        val current = LatLng(location.latitude, location.longitude)
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 16f))
+                    } else {
+                        Toast.makeText(this@VerificationActivity, "정확한 위치를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            },
+            null
+        )
     }
+
 
     private fun checkLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             if (location != null) {
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                val message = if (PNU_BOUNDS.contains(currentLatLng)) {
-                    "\u2705 캠퍼스 안에 있습니다!"
+
+                Log.d("VerificationActivity", "현재 위도: ${location.latitude}, 경도: ${location.longitude}")
+
+                if (PNU_BOUNDS.contains(currentLatLng)) {
+
+                    Toast.makeText(this, "\u2705 캠퍼스 안에 있습니다!", Toast.LENGTH_SHORT).show()
+
+                    val resultIntent = Intent().putExtra("verified", true)
+                    setResult(RESULT_OK, resultIntent)
+                    finish() // 🔴 finish() 후 return을 안 하면 아래 else까지 실행될 수 있음
+
                 } else {
-                    "\u274C 캠퍼스 밖입니다!"
+                    Toast.makeText(this, "\u274C 캠퍼스 밖입니다!", Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "위치 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

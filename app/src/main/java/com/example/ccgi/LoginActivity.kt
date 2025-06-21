@@ -18,6 +18,18 @@ class LoginActivity : AppCompatActivity() {
         val studentIdEdit = findViewById<EditText>(R.id.et_student_id)
         val passwordEdit = findViewById<EditText>(R.id.et_password)
 
+        val prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        val isLoggedIn = prefs.getBoolean("isLoggedIn", false)
+        val studentId = prefs.getString("studentId", null)
+
+        if (isLoggedIn && studentId != null) {
+            // 자동 로그인 → MainActivity로 이동
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
+
         val db = FirebaseFirestore.getInstance()
 
         loginBtn.setOnClickListener {

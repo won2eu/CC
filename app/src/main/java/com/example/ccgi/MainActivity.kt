@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
                     uploadHint.text = "이미지가 업로드되었습니다."
                     Toast.makeText(this, "이미지 선택됨", Toast.LENGTH_SHORT).show()
 
-                    // 🔽 Firebase Storage에 업로드
                     FirebaseUploader.uploadImageToFirebase(
                         this,
                         uri,
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
                             Log.d("FirebaseUpload", "업로드 성공: $url")
                             Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
 
-                            // 🔽 GPT 요청
                             GptApiHelper.callGptWithImageUrl(
                                 imageUrl = url,
                                 onSuccess = { gptResponse ->
@@ -46,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                                         gptResultView.text = gptResponse
                                     }
 
-                                    // 🔽 로그인한 studentId 가져오기
                                     val prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                                     val studentId = prefs.getString("studentId", null)
 
@@ -64,7 +61,6 @@ class MainActivity : AppCompatActivity() {
                                     } else {
                                         Log.e("MainActivity", "studentId를 찾을 수 없음")
                                     }
-
                                 },
                                 onFailure = { error ->
                                     Log.e("GPTError", error)
@@ -85,11 +81,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    private val verificationLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val verified = result.data?.getBooleanExtra("verified", false) ?: false
+            if (verified) {
+                val intent = Intent(this, MatchResultActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "위치 인증 실패", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         GptKeyProvider.init(applicationContext)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        testFirebaseConnection()
 
         imageView = findViewById(R.id.img_profile)
         uploadHint = findViewById(R.id.tv_upload_hint)
@@ -101,8 +113,8 @@ class MainActivity : AppCompatActivity() {
 
         val matchBtn = findViewById<Button>(R.id.btn_start_matching)
         matchBtn.setOnClickListener {
-            val intent = Intent(this, MatchResultActivity::class.java)
-            startActivity(intent)
+            val intent = Intent(this, VerificationActivity::class.java)
+            verificationLauncher.launch(intent)
         }
 
         val emailButton = findViewById<Button>(R.id.btn_send_email)
@@ -134,4 +146,24 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+    private fun testFirebaseConnection() {
+        val db = FirebaseFirestore.getInstance()
+        val testData = hashMapOf(
+            "test" to "connection",
+            "timestamp" to System.currentTimeMillis()
+        )
+
+        db.collection("test")
+            .document("connection_test")
+            .set(testData)
+            .addOnSuccessListener {
+                Log.d("FirebaseTest", "파이어베이스 연결 성공!")
+                Toast.makeText(this, "파이어베이스 연결 성공!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirebaseTest", "파이어베이스 연결 실패: ${e.message}")
+                Toast.makeText(this, "파이어베이스 연결 실패: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+    }
 }
