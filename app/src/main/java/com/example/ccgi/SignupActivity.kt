@@ -3,6 +3,7 @@ package com.example.ccgi
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignupActivity : AppCompatActivity() {
 
@@ -18,7 +19,6 @@ class SignupActivity : AppCompatActivity() {
         val mbtiSpinner = findViewById<Spinner>(R.id.spinner_mbti)
         val signupBtn = findViewById<Button>(R.id.btn_signup_submit)
 
-        // ✅ Spinner 어댑터 설정 (textColor 검정 적용)
         val genderAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.gender_array,
@@ -43,6 +43,9 @@ class SignupActivity : AppCompatActivity() {
         mbtiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mbtiSpinner.adapter = mbtiAdapter
 
+        // 🔹 Firebase Firestore 인스턴스 생성
+        val db = FirebaseFirestore.getInstance()
+
         signupBtn.setOnClickListener {
             val name = nameEdit.text.toString().trim()
             val studentId = studentIdEdit.text.toString().trim()
@@ -51,22 +54,33 @@ class SignupActivity : AppCompatActivity() {
             val major = majorSpinner.selectedItem.toString()
             val mbti = mbtiSpinner.selectedItem.toString()
 
-            // ✅ 필수 입력 확인
+            // 🔸 필수 입력값 검사
             if (name.isEmpty() || studentId.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "모든 항목을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // ✅ 결과 출력
-            Toast.makeText(
-                this,
-                "$name 님 환영합니다!\n학번: $studentId\n성별: $gender\n전공: $major\nMBTI: $mbti",
-                Toast.LENGTH_LONG
-            ).show()
+            // 🔸 저장할 데이터 생성
+            val user = hashMapOf(
+                "name" to name,
+                "studentId" to studentId,
+                "password" to password,
+                "sex" to gender,
+                "major" to major,
+                "MBTI" to mbti
+            )
 
-            // TODO: 회원가입 로직 추가
-
-            finish()
+            // 🔸 Firestore "users" 컬렉션에 저장
+            db.collection("users")
+                .document(studentId) // 문서 ID = 학번
+                .set(user)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "회원가입 성공!", Toast.LENGTH_SHORT).show()
+                    finish() // 화면 종료
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "회원가입 실패: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }
