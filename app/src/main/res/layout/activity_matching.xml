@@ -3,8 +3,7 @@
     android:layout_height="match_parent"
     android:background="#F9F9F9">
 
-
-
+    <!-- 콘텐츠 영역 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,4 +86,19 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginBottom="20dp" />
     </LinearLayout>
+
+    <!-- 하단 고정 푸터 -->
+    <TextView
+        android:id="@+id/footer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="쥐돌스 🐭 SDE Project"
+        android:textColor="#888888"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="italic"
+        android:paddingBottom="16dp" />
+
 </FrameLayout>

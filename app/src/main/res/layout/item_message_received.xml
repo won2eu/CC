@@ -8,8 +8,11 @@
         android:id="@+id/tv_message_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#dddddd"
-        android:textColor="#111418"
-        android:padding="12dp"
-        android:layout_margin="8dp" />
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/message_received_background"
+        android:layout_margin="8dp"
+        android:textStyle="bold" />
 </LinearLayout>

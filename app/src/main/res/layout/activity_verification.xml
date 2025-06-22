@@ -1,61 +1,80 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:gravity="center_vertical">
-
-        <!-- 뒤로가기 버튼 -->
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/left" />
-
-        <!-- 타이틀 -->
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingEnd="24dp"
-            android:text="캠퍼스 인증"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="#111418" />
-    </LinearLayout>
-
-    <!-- ✅ 지도 추가 -->
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="377dp"
-        android:layout_height="350dp"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:background="#CCCCCC" />
-
-
-    <!-- 인증 버튼 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btn_verify_location"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/button_backgound"
-            android:text="현재 위치 인증"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <!-- 뒤로가기 버튼 -->
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/left" />
+
+            <!-- 타이틀 -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="24dp"
+                android:text="캠퍼스 인증"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#111418" />
+        </LinearLayout>
+
+        <!-- 지도 -->
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="377dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:background="#CCCCCC" />
+
+        <!-- 인증 버튼 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/btn_verify_location"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/button_backgound"
+                android:text="현재 위치 인증"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+    <!-- 🐭 하단 고정 푸터 -->
+    <TextView
+        android:id="@+id/footer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="쥐돌스 🐭 SDE Project"
+        android:textColor="#888888"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="italic"
+        android:padding="12dp" />
+</FrameLayout>

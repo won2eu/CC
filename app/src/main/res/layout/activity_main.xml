@@ -6,9 +6,6 @@
     android:layout_height="match_parent">
 
     <!-- 메인 화면 -->
-
-    <!-- Drawer 메뉴 -->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,8 +25,6 @@
             android:contentDescription="프로필 이미지"
             android:focusable="true"
             android:scaleType="centerCrop" />
-
-        <!-- ✅ tv_upload_hint는 제거됨 -->
 
         <!-- GPT 분석 결과 텍스트 -->
         <TextView
@@ -65,6 +60,7 @@
             android:layout_height="286dp"
             android:layout_below="@id/tv_result_description"
             android:layout_marginTop="24dp"
+            android:layout_above="@id/footer_text"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -100,9 +96,22 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- 하단 네비게이션 -->
+        <!-- 🐭 하단 고정 로고/텍스트 -->
+        <TextView
+            android:id="@+id/footer_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="쥐돌스 🐭 SDE Project"
+            android:textColor="#888888"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="italic"
+            android:paddingBottom="12dp" />
     </RelativeLayout>
 
+    <!-- Drawer 메뉴 -->
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="match_parent"

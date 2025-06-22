@@ -52,7 +52,7 @@
         android:orientation="horizontal"
         android:padding="12dp"
         android:gravity="center_vertical"
-        android:background="#F8F9FB">
+        android:background="#FFF0F5">
 
         <!-- 메시지 입력창 -->
         <EditText
@@ -75,7 +75,7 @@
             android:layout_height="48dp"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@drawable/bg_send_button"
+            android:background="@drawable/button_backgound"
             android:paddingHorizontal="16dp"
             android:layout_marginStart="8dp"
             android:clickable="true"
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전송"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
