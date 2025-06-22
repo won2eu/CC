@@ -6,6 +6,9 @@
     android:layout_height="match_parent">
 
     <!-- 메인 화면 -->
+
+    <!-- Drawer 메뉴 -->
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,16 +37,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/img_profile"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
+            android:background="@drawable/button_backgound_8"
+            android:backgroundTint="#f1f3f5"
             android:padding="12dp"
             android:text="GPT 분석 결과가 여기에 표시됩니다."
             android:textAlignment="center"
             android:textColor="#111418"
             android:textSize="16sp"
-            android:background="@drawable/button_backgound_8"
-            android:backgroundTint="#f1f3f5"
             android:visibility="visible" />
 
         <!-- 설정 버튼 -->
@@ -59,104 +62,47 @@
         <!-- 중앙 텍스트 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:layout_height="286dp"
             android:layout_below="@id/tv_result_description"
-            android:layout_marginTop="24dp">
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="나에게 꼭 맞는 사람 찾기"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#111418"
                 android:paddingTop="16dp"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:text="나에게 꼭 맞는 사람 찾기"
+                android:textColor="#111418"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="24dp"
                 android:text="우리 학교 학생들과 매칭 시작!"
-                android:textSize="14sp"
                 android:textColor="#60748a"
-                android:paddingBottom="24dp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/btn_start_matching"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="매칭 시작하기"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/button_backgound"
-                android:textColor="@android:color/black"
                 android:paddingHorizontal="15dp"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp" />
+                android:text="매칭 시작하기"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- 하단 네비게이션 -->
-        <LinearLayout
-            android:id="@+id/bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            android:background="#F9F9FB"
-            android:weightSum="4"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp">
-
-            <!-- 탭 4개 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"/>
-            </LinearLayout>
-        </LinearLayout>
     </RelativeLayout>
 
-    <!-- Drawer 메뉴 -->
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="match_parent"
