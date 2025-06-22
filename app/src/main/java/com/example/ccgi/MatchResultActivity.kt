@@ -150,7 +150,7 @@ class MatchResultActivity : AppCompatActivity() {
                             matchMajorIdx, matchMbtiIdx
                         )
 
-                        compatView.text = "잘 맞을 확률: ${"%.1f".format(score * 100)}%"
+                        compatView.text = "매칭 적합도: ${"%.1f".format(score * 100)}%"
                     }
                     .addOnFailureListener {
                         Toast.makeText(this, "유저 조회 실패", Toast.LENGTH_SHORT).show()
