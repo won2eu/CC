@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             verificationLauncher.launch(intent)
         }
 
-        val emailButton = findViewById<Button>(R.id.btn_send_email)
+        val emailButton = findViewById<Button>(R.id.tv_upload_hint)
         emailButton.setOnClickListener {
             sendFeedbackEmail()
         }

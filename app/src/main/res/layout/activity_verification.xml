@@ -4,25 +4,41 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <!-- 타이틀 -->
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Campus Verification"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
         android:padding="16dp"
-        android:textColor="#111418" />
+        android:gravity="center_vertical">
+
+        <!-- 뒤로가기 버튼 -->
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/left" />
+
+        <!-- 타이틀 -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingEnd="24dp"
+            android:text="캠퍼스 인증"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#111418" />
+    </LinearLayout>
 
     <!-- ✅ 지도 추가 -->
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="377dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
         android:layout_margin="16dp"
-        android:background="#CCCCCC"
-        android:layout_gravity="center" />
+        android:background="#CCCCCC" />
 
 
     <!-- 인증 버튼 -->
@@ -37,9 +53,9 @@
             android:id="@+id/btn_verify_location"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:backgroundTint="#0c77f2"
-            android:text="Verify Current Location"
-            android:textColor="@android:color/white"
+            android:background="@drawable/button_backgound"
+            android:text="현재 위치 인증"
+            android:textColor="@android:color/black"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

@@ -17,7 +17,7 @@
             android:id="@+id/btn_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@null" />
+            android:background="@drawable/left" />
 
         <TextView
             android:id="@+id/tv_chat_title"
@@ -50,34 +50,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
-        android:gravity="center_vertical">
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:background="#F8F9FB">
 
+        <!-- 메시지 입력창 -->
         <EditText
             android:id="@+id/et_message"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_bg"
-            android:hint="Type a message"
-            android:padding="12dp"
-            android:textColorHint="#60748a"
-            android:textColor="#111418" />
+            android:background="@drawable/bg_message_input"
+            android:hint="메세지 입력"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:textColorHint="#9BAAB8"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp" />
 
-        <ImageButton
-            android:id="@+id/btn_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@null"
-            android:layout_marginStart="8dp" />
-
-        <Button
+        <!-- 전송 버튼 -->
+        <LinearLayout
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="Send"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#0c77f2"
-            android:layout_marginStart="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_send_button"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전송"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
