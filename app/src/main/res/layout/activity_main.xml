@@ -1,175 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:layout_height="match_parent">
 
-    <!-- 이메일 보내기 버튼 (상단 중앙) -->
-    <Button
-        android:id="@+id/btn_send_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이메일 보내기"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FF6F00"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
-
-    <!-- 상단 프로필 + 설정 -->
-
-    <!-- 이미지 업로드 안내 텍스트 -->
-    <ImageView
-        android:id="@+id/img_profile"
-        android:layout_width="340dp"
-        android:layout_height="163dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_bg"
-        android:clickable="true"
-        android:contentDescription="프로필 이미지"
-        android:focusable="true"
-        android:scaleType="centerCrop" />
-
-    <TextView
-        android:id="@+id/tv_upload_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="앨범에서 이미지를 업로드하세요"
-        android:textSize="14sp"
-        android:textColor="#60748a"
-        android:layout_below="@id/img_profile"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"/>
-
-    <!-- GPT 분석 결과 출력 텍스트뷰 -->
-    <TextView
-        android:id="@+id/tv_result_description"
+    <!-- ✅ 기존 화면 전체 유지 (RelativeLayout) -->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_upload_hint"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:padding="12dp"
-        android:text="GPT 분석 결과가 여기에 표시됩니다."
-        android:textColor="#111418"
-        android:textSize="16sp"
-        android:background="#f1f3f5"
-        android:visibility="visible" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
-    <ImageButton
-        android:id="@+id/btn_settings"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:background="@null" />
+        <!-- 🔽 기존 btn_send_email 제거됨 (옮김) -->
 
-    <!-- 텍스트 중앙 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_below="@id/tv_result_description"
-        android:layout_marginTop="24dp">
+        <!-- 상단 프로필 이미지 -->
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="340dp"
+            android:layout_height="163dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="101dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_bg"
+            android:clickable="true"
+            android:contentDescription="프로필 이미지"
+            android:focusable="true"
+            android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_upload_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Find your perfect match"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#111418"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            android:id="@+id/tv_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start matching with students on campus"
+            android:text="앨범에서 이미지를 업로드하세요"
             android:textSize="14sp"
             android:textColor="#60748a"
-            android:paddingBottom="24dp" />
+            android:layout_below="@id/img_profile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_result_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_upload_hint"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:padding="12dp"
+            android:text="GPT 분석 결과가 여기에 표시됩니다."
+            android:textColor="#111418"
+            android:textSize="16sp"
+            android:background="#f1f3f5"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/btn_settings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:background="@null" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/tv_result_description"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find your perfect match"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#111418"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start matching with students on campus"
+                android:textSize="14sp"
+                android:textColor="#60748a"
+                android:paddingBottom="24dp" />
+
+            <Button
+                android:id="@+id/btn_start_matching"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Start Matching"
+                android:textStyle="bold"
+                android:backgroundTint="#0c77f2"
+                android:textColor="@android:color/white"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="#F9F9FB"
+            android:weightSum="4"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- ✅ DrawerLayout 내부 서랍 메뉴 (왼쪽) -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:padding="24dp">
 
         <Button
-            android:id="@+id/btn_start_matching"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Start Matching"
-            android:textStyle="bold"
-            android:backgroundTint="#0c77f2"
+            android:id="@+id/btn_send_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="이메일 보내기"
+            android:backgroundTint="#FF6F00"
             android:textColor="@android:color/white"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            android:layout_marginTop="8dp" />
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그아웃"
+            android:backgroundTint="#D32F2F"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
     </LinearLayout>
-
-    <!-- 하단 네비게이션 -->
-    <LinearLayout
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:background="#F9F9FB"
-        android:weightSum="4"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"/>
-        </LinearLayout>
-    </LinearLayout>
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -121,6 +121,11 @@ class MainActivity : AppCompatActivity() {
         emailButton.setOnClickListener {
             sendFeedbackEmail()
         }
+        val logoutButton = findViewById<Button>(R.id.btn_logout)
+        logoutButton.setOnClickListener {
+            logout()
+        }
+
     }
 
     private fun openImagePicker() {
@@ -166,4 +171,17 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "파이어베이스 연결 실패: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
+
+    private fun logout() {
+        val prefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        prefs.edit().remove("studentId").apply() // studentId 삭제
+
+        Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+
+        // 로그인 화면으로 이동
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+    }
+
 }
