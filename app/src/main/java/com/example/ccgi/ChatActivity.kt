@@ -10,6 +10,8 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ListenerRegistration
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await  // ← 중요!
 
 class ChatActivity : AppCompatActivity() {
 
@@ -24,6 +26,8 @@ class ChatActivity : AppCompatActivity() {
     private val messages = mutableListOf<Message>()
     private lateinit var adapter: MessageAdapter
     private var listenerRegistration: ListenerRegistration? = null
+
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +48,9 @@ class ChatActivity : AppCompatActivity() {
         sendButton.setOnClickListener {
             val content = messageInput.text.toString().trim()
             if (content.isNotEmpty()) {
-                sendMessage(content)
+                coroutineScope.launch {
+                    sendMessage(content)
+                }
                 messageInput.setText("")
             }
         }
@@ -52,16 +58,22 @@ class ChatActivity : AppCompatActivity() {
         listenForMessages()
     }
 
-    private fun sendMessage(content: String) {
+    // ✅ suspend로 변경 + await() 사용
+    private suspend fun sendMessage(content: String) {
         val message = mapOf(
             "senderId" to currentUserId,
             "content" to content,
             "timestamp" to Timestamp.now()
         )
-        db.collection("chat_messages")
-            .document(chatId)
-            .collection("messages")
-            .add(message)
+        try {
+            db.collection("chat_messages")
+                .document(chatId)
+                .collection("messages")
+                .add(message)
+                .await()  // Firebase 호출을 코루틴으로 기다림
+        } catch (e: Exception) {
+            e.printStackTrace() // 에러 로그
+        }
     }
 
     private fun listenForMessages() {
@@ -89,5 +101,6 @@ class ChatActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         listenerRegistration?.remove()
+        coroutineScope.cancel() // 코루틴 취소
     }
 }
