@@ -120,25 +120,29 @@
         android:background="#FFFFFF"
         android:padding="24dp">
 
-        <!-- ✅ 이메일 버튼 id 유지 (tv_upload_hint) -->
+        <!-- ✅ 이메일 버튼: 기본 핑크 -->
         <Button
             android:id="@+id/tv_upload_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="이메일 보내기"
-            android:backgroundTint="#FF6F00"
-            android:textColor="@android:color/white"
+            android:background="@drawable/button_backgound"
+            android:text="개발자에게 피드백 보내기"
+            android:backgroundTint="#FCE7F3"
+            android:textColor="@android:color/black"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
 
+        <!-- ✅ 로그아웃 버튼: 진한 핑크 -->
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_backgound"
             android:text="로그아웃"
-            android:backgroundTint="#D32F2F"
-            android:textColor="@android:color/white"
+            android:backgroundTint="#FCE7F3"
+            android:textColor="@android:color/black"
             android:textStyle="bold" />
     </LinearLayout>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

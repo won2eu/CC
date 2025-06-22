@@ -3,102 +3,92 @@
     android:layout_height="match_parent"
     android:background="#F9F9F9">
 
-    <!-- 콘텐츠 영역 -->
-    <LinearLayout
+    <!-- 상단 타이틀 -->
+    <TextView
+        android:id="@+id/tv_mbti2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:layout_gravity="center">
+        android:layout_marginTop="24dp"
+        android:text="Profile"
+        android:textColor="#333333"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:gravity="center" />
 
-        <!-- 프로필 카드 -->
+    <!-- 스크롤 가능한 프로필 정보 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="90dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/bg_card_white"
-            android:elevation="4dp"
-            android:padding="20dp"
-            android:layout_marginBottom="60dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginHorizontal="12dp">
+            android:layout_marginTop="180dp"
+            android:layout_marginHorizontal="24dp"
+            android:gravity="center_horizontal">
 
+            <!-- 이름 / MBTI -->
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이름: "
-                android:textSize="18sp"
+                android:paddingBottom="4dp"
                 android:textColor="#111111"
-                android:paddingBottom="8dp" />
+                android:textSize="27sp" />
 
             <TextView
                 android:id="@+id/tv_mbti"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MBTI: "
-                android:textSize="18sp"
+                android:paddingBottom="16dp"
                 android:textColor="#333333"
-                android:paddingBottom="8dp" />
+                android:textSize="21sp" />
 
+            <!-- 나머지 정보 -->
             <TextView
                 android:id="@+id/tv_major"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="전공: "
-                android:textSize="18sp"
                 android:textColor="#333333"
-                android:paddingBottom="8dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_face_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="외모: "
-                android:textSize="18sp"
+                android:paddingBottom="8dp"
+                android:text="어떤 사람인가요?\n"
                 android:textColor="#333333"
-                android:paddingBottom="8dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_compatibility"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
                 android:text="잘 맞을 확률: "
-                android:textSize="20sp"
                 android:textColor="#007AFF"
-                android:textStyle="bold"
-                android:paddingBottom="12dp" />
-
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
+    </ScrollView>
 
-        <!-- 채팅 버튼 -->
-        <Button
-            android:id="@+id/btn_start_chat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="채팅 시작하기"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:background="@drawable/button_backgound"
-            android:paddingVertical="14dp"
-            android:elevation="4dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginBottom="20dp" />
-    </LinearLayout>
-
-    <!-- 하단 고정 푸터 -->
-    <TextView
-        android:id="@+id/footer_text"
+    <!-- 고정된 하단 버튼 -->
+    <Button
+        android:id="@+id/btn_start_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:gravity="center"
-        android:text="쥐돌스 🐭 SDE Project"
-        android:textColor="#888888"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-light"
-        android:textStyle="italic"
-        android:paddingBottom="16dp" />
-
+        android:layout_margin="20dp"
+        android:background="@drawable/button_backgound"
+        android:elevation="4dp"
+        android:paddingVertical="14dp"
+        android:text="채팅 시작하기"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
 </FrameLayout>

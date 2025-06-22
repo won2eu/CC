@@ -162,10 +162,10 @@ class MatchResultActivity : AppCompatActivity() {
     }
 
     private fun displayMatchInfo(match: DocumentSnapshot) {
-        nameView.text = "이름: ${match.getString("name") ?: "없음"}"
-        mbtiView.text = "MBTI: ${match.getString("MBTI") ?: "없음"}"
+        nameView.text = "${match.getString("name") ?: "없음"}"
+        mbtiView.text = "${match.getString("MBTI") ?: "없음"}"
         majorView.text = "전공: ${match.getString("major") ?: "없음"}"
-        faceDescView.text = "외모: ${match.getString("face") ?: "없음"}"
+        faceDescView.text = "⭐️어떤 사람인가요?⭐️\n${match.getString("face") ?: "없음"}"
     }
 
     private fun getCurrentUserId(): String {
